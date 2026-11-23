@@ -7,13 +7,19 @@ the source code and server configuration live in a separate private repository.
 
 | Version | File | Date | Notes |
 | --- | --- | --- | --- |
+| 0.1.1 (versionCode 2) | `apk/regis-0.1.1-pin-fix-debug.apk` | 2026-11-23 | Parent PIN persists after restart; feedback button; production API |
 | 0.1.0 (versionCode 1) | `apk/regis-0.1.0-feedback-debug.apk` | 2026-11-23 | Consent v3, child feedback button, production API URL |
 
 SHA-256:
 
 ```text
+d92ab069ff68f3c54169134273c7c9007e4a10d57931101806050470e38d357b  apk/regis-0.1.1-pin-fix-debug.apk
 9b3d0d51367aced9a2fe707ade582ddfc31e4820601463161cb6385056fe3a1e  apk/regis-0.1.0-feedback-debug.apk
 ```
+
+`0.1.1` installs as an update over `0.1.0` because both are debug-signed with the same certificate and
+`versionCode` is higher. Keep the token and PIN; the update does not clear app data. If the PIN was
+already lost in `0.1.0`, set it once in `0.1.1` and it should survive later restarts.
 
 ## Install
 
