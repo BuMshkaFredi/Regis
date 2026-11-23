@@ -7,6 +7,7 @@ source code and server configuration live in a separate private repository.
 
 | Version | File | Date | Notes |
 | --- | --- | --- | --- |
+| 0.4.0 (versionCode 4) | `apk/regis-0.4.0-release.apk` | 2026-11-24 | Release-signed; voice input via the system recognizer; gallery or camera photo capture; no camera/microphone permission; 0.3.0 features included |
 | 0.3.0 (versionCode 3) | `apk/regis-0.3.0-release.apk` | 2026-11-24 | Release-signed; new-chat subject greeting; daily plan server-side; consent v3; feedback; parent PIN fix; production API |
 | 0.1.1 (versionCode 2) | `apk/regis-0.1.1-pin-fix-debug.apk` | 2026-11-23 | Debug-signed; parent PIN persists after restart; feedback button; production API |
 | 0.1.0 (versionCode 1) | `apk/regis-0.1.0-feedback-debug.apk` | 2026-11-23 | Debug-signed; consent v3; child feedback button; production API URL |
@@ -14,14 +15,17 @@ source code and server configuration live in a separate private repository.
 SHA-256:
 
 ```text
+b8241f82d6dfc9a39b6351d06ed79bf43d596f64970a3564e058e1f54cf9fc87  apk/regis-0.4.0-release.apk
 026cce3a6c45c7711d006df7986835f35465292405a3b1046a5e492a20165c55  apk/regis-0.3.0-release.apk
 d92ab069ff68f3c54169134273c7c9007e4a10d57931101806050470e38d357b  apk/regis-0.1.1-pin-fix-debug.apk
 9b3d0d51367aced9a2fe707ade582ddfc31e4820601463161cb6385056fe3a1e  apk/regis-0.1.0-feedback-debug.apk
 ```
 
-**0.3.0 is release-signed.** It cannot install over the debug-signed 0.1.x builds: uninstall the old
-app first. Server history survives; the local cache and the token on the phone do not, so keep the
-token safe. Future 0.3.x builds with the same release key install as updates.
+**0.4.0 and 0.3.0 are release-signed.** 0.4.0 installs over 0.3.0 as an update: the same key and a
+higher `versionCode` keep the token, PIN, and local cache. A release-signed APK cannot install over the
+debug-signed 0.1.x builds: uninstall the old app first. Server history survives; the local cache and
+the token on the phone do not, so keep the token safe. Future 0.4.x builds with the same release key
+install as updates.
 
 0.1.1 installs over 0.1.0 because both are debug-signed with the same certificate and `versionCode` is
 higher. Keep the token and PIN; the update does not clear app data.
@@ -33,6 +37,10 @@ higher. Keep the token and PIN; the update does not clear app data.
 - The child token and the parent token are issued in the admin page and are not stored in this
   repository.
 - The **Обратная связь** action is in the chat overflow menu.
+- Voice: the microphone opens the phone's speech-recognition dialog and inserts text into the draft;
+  nothing is sent until **Отправить**. Camera: **Прикрепить фото** offers **Галерея** or **Камера**;
+  the captured photo is compressed and added to the draft. The app requests neither camera nor
+  microphone permission.
 
 ## Signing
 
